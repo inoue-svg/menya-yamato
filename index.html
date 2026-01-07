@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麺や 大作 - 深夜の締めの一杯</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#2C3E50',
+                        accent: '#E74C3C',
+                        lightBg: '#ECF0F1',
+                        darkBg: '#1a202c',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        serif: ['"Zen Old Mincho"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            font-family: 'Noto Sans JP', sans-serif; 
+            transition: background-color 0.4s, color 0.4s;
+        }
+        h1, h2, h3, .serif-font { font-family: 'Zen Old Mincho', serif; }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+        }
+
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); 
+        }
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E74C3C; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-lightBg text-main dark:bg-darkBg dark:text-gray-100 selection:bg-accent selection:text-white">
+
+    <!-- ナビゲーション -->
+    <nav class="fixed w-full z-50 transition-all duration-500 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold serif-font tracking-tighter hover:text-accent transition-colors">
+                麺や <span class="text-accent">大作</span>
+            </a>
+            <div class="flex items-center gap-8">
+                <div class="hidden md:flex gap-8 text-sm font-medium tracking-wider">
+                    <a href="#about" class="hover:text-accent transition-colors">WHO I AM</a>
+                    <a href="#ingredients" class="hover:text-accent transition-colors">食材</a>
+                    <a href="#menu" class="hover:text-accent transition-colors">メニュー</a>
+                    <a href="#contact" class="hover:text-accent transition-colors">お問合せ</a>
+                </div>
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-accent hover:text-white transition-all">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーロー -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden parallax" style="background-image: url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=2000&auto=format&fit=crop');">
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="relative z-10 text-center text-white px-6">
+            <span class="inline-block px-4 py-1 mb-6 border border-white/30 rounded-full text-xs tracking-[0.4em] uppercase backdrop-blur-sm">Authentic Ramen Shop</span>
+            <h1 class="text-5xl md:text-8xl font-bold mb-8 serif-font tracking-widest drop-shadow-2xl">
+                深夜の締めの一杯
+            </h1>
+            <p class="text-lg md:text-2xl font-light tracking-[0.5em] opacity-80 mb-12">
+                豊かで深い味わいをあなたに
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <a href="#menu" class="px-10 py-4 bg-accent text-white rounded-full font-bold tracking-widest hover:bg-white hover:text-accent transition-all shadow-xl">VIEW MENU</a>
+                <a href="#about" class="px-10 py-4 bg-white/10 text-white border border-white/30 rounded-full font-bold tracking-widest hover:bg-white/20 backdrop-blur-sm transition-all">LEARN MORE</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+            <span class="text-[10px] tracking-[0.3em] uppercase opacity-50">Scroll</span>
+            <div class="w-px h-12 bg-gradient-to-b from-white to-transparent animate-bounce"></div>
+        </div>
+    </section>
+
+    <!-- 自己紹介 -->
+    <section id="about" class="py-32 px-6 bg-white dark:bg-gray-900 overflow-hidden transition-colors">
+        <div class="container mx-auto max-w-5xl">
+            <div class="flex flex-col md:flex-row items-center gap-16 md:gap-24">
+                <div class="w-full md:w-1/2 reveal">
+                    <div class="relative group">
+                        <div class="absolute -inset-4 border-2 border-accent/20 rounded-2xl group-hover:border-accent/40 transition-colors"></div>
+                        <img src="29896_0.jpg" alt="店主 和田大作の近影" class="relative w-full aspect-[4/5] object-cover rounded-xl shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]" onerror="this.src='https://images.unsplash.com/photo-1583394838336-acd977730f5a?q=80&w=1000&auto=format&fit=crop'">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 reveal" style="transition-delay: 200ms;">
+                    <h2 class="text-4xl md:text-5xl font-bold serif-font mb-8 leading-tight">
+                        はじめまして<br>店主 <span class="text-accent underline underline-offset-[12px] decoration-2">Wada Daisaku</span> です。
+                    </h2>
+                    <p class="text-lg leading-loose text-gray-500 dark:text-gray-400 mb-10">
+                        深夜にほっと一息つけるラーメンを。一人ひとりの疲れを癒す、そんな一杯を追求しています。素材本来の味を活かし、毎日でも食べたくなるような、優しくも深い味わいを目指しています。
+                    </p>
+                    <div class="inline-flex flex-col items-center p-6 bg-lightBg dark:bg-darkBg rounded-2xl shadow-inner border border-gray-100 dark:border-gray-800">
+                        <span class="text-[10px] font-bold tracking-[0.3em] text-accent uppercase mb-2">My Favorite</span>
+                        <p class="text-xl font-bold serif-font text-main dark:text-white">ラーメン屋巡り</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 中間背景 (パララックス) -->
+    <section class="h-80 md:h-[500px] parallax" style="background-image: url('https://images.unsplash.com/photo-1618848460037-5c96da9c75a6?q=80&w=2000&auto=format&fit=crop');">
+        <div class="w-full h-full bg-black/50 backdrop-brightness-50 flex items-center justify-center">
+            <p class="text-white text-3xl md:text-5xl serif-font tracking-[0.5em] text-center px-4 drop-shadow-lg">妥協なき、至高の麺。</p>
+        </div>
+    </section>
+
+    <!-- 食材こだわり -->
+    <section id="ingredients" class="py-32 px-6 bg-lightBg dark:bg-darkBg transition-colors">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold serif-font mb-4 tracking-tight">こだわりの食材</h2>
+                <div class="w-20 h-1 bg-accent mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="group reveal card-hover bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="h-80 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-15813393103fb5-ba64736f189e?q=80&w=1000&auto=format&fit=crop" alt="[地元産醤油のクローズアップ]" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold serif-font mb-4">地元産 醤油</h3>
+                        <p class="text-gray-500 dark:text-gray-400 leading-loose">地域の蔵元で作られた伝統的な醤油。深い香りとキレのある後味が、当店のスープの決め手です。職人が守り抜いた味を贅沢に使用しています。</p>
+                    </div>
+                </div>
+                <div class="group reveal card-hover bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700" style="transition-delay: 200ms;">
+                    <div class="h-80 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?q=80&w=1000&auto=format&fit=crop" alt="[輝く鶏ガラのスープベース]" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold serif-font mb-4">有名店の地鶏</h3>
+                        <p class="text-gray-500 dark:text-gray-400 leading-loose">厳選した鶏ガラをじっくり煮込み、極上のコクと黄金色の輝きを抽出しました。雑味のない、クリアでありながら濃厚な旨味をご堪能ください。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- メニュー -->
+    <section id="menu" class="py-32 px-6 bg-white dark:bg-gray-900 transition-colors">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-center text-4xl md:text-5xl font-bold serif-font mb-24 reveal">お品書き</h2>
+            
+            <div class="space-y-6">
+                <!-- メインメニュー -->
+                <div class="group p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-accent transition-all reveal shadow-sm hover:shadow-xl dark:bg-gray-900/50">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold serif-font mb-2 group-hover:text-accent transition-colors">鳥白湯ラーメン</h3>
+                            <p class="text-sm text-gray-400">看板メニュー。地鶏の旨味を24時間かけて凝縮した、濃厚かつ上品な一杯。</p>
+                        </div>
+                        <span class="text-3xl font-bold text-accent font-serif tracking-tighter">¥1,100</span>
+                    </div>
+                </div>
+
+                <div class="group p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-accent transition-all reveal shadow-sm hover:shadow-xl dark:bg-gray-900/50" style="transition-delay: 100ms;">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold serif-font mb-2 group-hover:text-accent transition-colors">煮干しラーメン</h3>
+                            <p class="text-sm text-gray-400">数種類の煮干しをブレンド。芳醇な香りとキレのある醤油が絶妙にマッチ。</p>
+                        </div>
+                        <span class="text-3xl font-bold text-accent font-serif tracking-tighter">¥980</span>
+                    </div>
+                </div>
+
+                <div class="group p-8 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-accent transition-all reveal shadow-sm hover:shadow-xl dark:bg-gray-900/50" style="transition-delay: 200ms;">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold serif-font mb-2 group-hover:text-accent transition-colors">特製チャーシュー丼</h3>
+                            <p class="text-sm text-gray-400">直火で炙ったとろけるチャーシューに、特製の秘伝ダレをかけて。</p>
+                        </div>
+                        <span class="text-3xl font-bold text-accent font-serif tracking-tighter">¥450</span>
+                    </div>
+                </div>
+
+                <!-- サイドメニュー -->
+                <div class="grid md:grid-cols-2 gap-6 mt-12">
+                    <div class="flex justify-between items-center p-6 bg-lightBg dark:bg-darkBg rounded-2xl reveal shadow-sm" style="transition-delay: 300ms;">
+                        <span class="font-bold serif-font text-xl">自家製メンマ丼</span>
+                        <span class="font-bold text-accent">¥350</span>
+                    </div>
+                    <div class="flex justify-between items-center p-6 bg-lightBg dark:bg-darkBg rounded-2xl reveal shadow-sm" style="transition-delay: 400ms;">
+                        <span class="font-bold serif-font text-xl">ダイブめし（白飯）</span>
+                        <span class="font-bold text-accent">¥150</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問合せ (コンパクト版) -->
+    <section id="contact" class="py-20 px-6 bg-lightBg dark:bg-darkBg transition-colors">
+        <div class="container mx-auto max-w-xl bg-white dark:bg-gray-900 p-8 md:p-12 rounded-[32px] shadow-xl border border-gray-100 dark:border-gray-800 reveal">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold serif-font mb-2">お問合せ</h2>
+                <p class="text-[10px] text-gray-400 tracking-[0.3em] uppercase">Contact Us</p>
+            </div>
+            
+            <form onsubmit="event.preventDefault();" class="space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Name</label>
+                        <input type="text" placeholder="お名前" class="w-full bg-lightBg dark:bg-darkBg border-none rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-accent outline-none transition-all placeholder:text-gray-400">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Email</label>
+                        <input type="email" placeholder="メールアドレス" class="w-full bg-lightBg dark:bg-darkBg border-none rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-accent outline-none transition-all placeholder:text-gray-400">
+                    </div>
+                </div>
+                <div class="space-y-1.5">
+                    <label class="text-[10px] font-bold tracking-widest text-gray-400 uppercase ml-1">Message</label>
+                    <textarea rows="3" placeholder="内容をご記入ください" class="w-full bg-lightBg dark:bg-darkBg border-none rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-accent outline-none transition-all resize-none placeholder:text-gray-400"></textarea>
+                </div>
+                
+                <div class="text-center pt-4">
+                    <button type="submit" class="group relative overflow-hidden bg-main dark:bg-white text-white dark:text-main px-12 py-3.5 rounded-full text-sm font-bold uppercase tracking-widest transition-all shadow-md">
+                        <span class="relative z-10">Send Message</span>
+                        <div class="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-12 flex flex-col items-center">
+                <div class="flex gap-6">
+                    <a href="#" class="text-2xl text-gray-300 hover:text-accent transition-all">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-2xl text-gray-300 hover:text-accent transition-all">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white dark:bg-gray-950 text-center border-t border-gray-100 dark:border-gray-900 transition-colors">
+        <a href="#" class="text-xl font-bold serif-font mb-6 inline-block tracking-tighter">
+            麺や <span class="text-accent">大作</span>
+        </a>
+        <p class="serif-font text-[9px] tracking-[0.5em] text-gray-400 uppercase">&copy; Menya Daisaku All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // ダークモード切り替え
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        themeToggleBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+        });
+
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ナビゲーション背景の変更
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'shadow-lg');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2', 'shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
