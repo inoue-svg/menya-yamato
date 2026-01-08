@@ -72,6 +72,28 @@
             background-size: cover;
         }
 
+        /* キャラクター装飾用のスタイル */
+        .char-bubble {
+            position: relative;
+            background: #fff;
+            border-radius: .4em;
+        }
+        .char-bubble:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: #fff;
+            border-left: 0;
+            margin-top: -10px;
+            margin-left: -10px;
+        }
+        .dark .char-bubble { background: #2D3748; }
+        .dark .char-bubble:after { border-right-color: #2D3748; }
+
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #E74C3C; border-radius: 10px; }
@@ -100,7 +122,7 @@
         </div>
     </nav>
 
-    <!-- ヒーロー (メインビジュアル) -->
+    <!-- ヒーロー -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden parallax" style="background-image: url('https://github.com/inoue-svg/menya-yamato/blob/main/%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%E5%86%99%E7%9C%9F/Gemini_Generated_Image_6ymsdx6ymsdx6yms.png?raw=true');">
         <div class="absolute inset-0 hero-overlay"></div>
         <div class="relative z-10 text-center text-white px-6">
@@ -133,11 +155,21 @@
                         はじめまして<br>店主 <span class="text-accent underline underline-offset-[12px] decoration-2">Wada Daisaku</span> です。
                     </h2>
                     <p class="text-lg leading-loose text-gray-500 dark:text-gray-400 mb-10">
-                        深夜にほっと一息つけるラーメンを。一人ひとりの疲れを癒す、そんな一杯を追求しています。素材本来의 味を活かし、毎日でも食べたくなるような、優しくも深い味わいを目指しています。
+                        深夜にほっと一息つけるラーメンを。一人ひとりの疲れを癒す、そんな一杯を追求しています。素材本来の味を活かし、毎日でも食べたくなるような、優しくも深い味わいを目指しています。
                     </p>
-                    <div class="inline-flex flex-col items-center p-6 bg-lightBg dark:bg-darkBg rounded-2xl shadow-inner border border-gray-100 dark:border-gray-800">
-                        <span class="text-[10px] font-bold tracking-[0.3em] text-accent uppercase mb-2">My Favorite</span>
-                        <p class="text-xl font-bold serif-font text-main dark:text-white">ラーメン屋巡り</p>
+                    
+                    <!-- キャラクター配置：ラーメン屋巡りの右横 -->
+                    <div class="flex items-center gap-4">
+                        <div class="inline-flex flex-col items-center p-6 bg-lightBg dark:bg-darkBg rounded-2xl shadow-inner border border-gray-100 dark:border-gray-800">
+                            <span class="text-[10px] font-bold tracking-[0.3em] text-accent uppercase mb-2">My Favorite</span>
+                            <p class="text-xl font-bold serif-font text-main dark:text-white">ラーメン屋巡り</p>
+                        </div>
+                        <div class="flex items-center gap-3 animate-bounce">
+                            <img src="https://github.com/inoue-svg/menya-yamato/blob/main/yamato_character.jpg.jpg?raw=true" alt="やまとくん" class="w-16 h-16 rounded-full border-2 border-accent object-cover shadow-md">
+                            <div class="hidden lg:block char-bubble p-3 shadow-sm">
+                                <p class="text-[10px] font-bold">ボクも大好きだワン！</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,11 +184,21 @@
     </section>
 
     <!-- 食材こだわり -->
-    <section id="ingredients" class="py-32 px-6 bg-lightBg dark:bg-darkBg transition-colors">
-        <div class="container mx-auto max-w-6xl">
-            <div class="text-center mb-20 reveal">
+    <section id="ingredients" class="py-32 px-6 bg-lightBg dark:bg-darkBg transition-colors relative overflow-hidden">
+        <!-- 背景装飾としてのキャラクター（白浮き防止） -->
+        <div class="absolute top-20 -right-10 opacity-10 rotate-12 hidden lg:block">
+             <img src="https://github.com/inoue-svg/menya-yamato/blob/main/yamato_character.jpg.jpg?raw=true" class="w-64 h-64 rounded-full">
+        </div>
+
+        <div class="container mx-auto max-w-6xl relative z-10">
+            <div class="text-center mb-20 reveal flex flex-col items-center">
                 <h2 class="text-4xl md:text-5xl font-bold serif-font mb-4 tracking-tight">こだわりの麺</h2>
                 <div class="w-20 h-1 bg-accent mx-auto"></div>
+                <!-- キャラクター配置：こだわりの麺の横 -->
+                <div class="mt-4 flex items-center gap-2">
+                    <img src="https://github.com/inoue-svg/menya-yamato/blob/main/yamato_character.jpg.jpg?raw=true" class="w-10 h-10 rounded-full border border-accent">
+                    <span class="text-xs font-bold serif-font">ツルツルもちもちだワン！</span>
+                </div>
             </div>
             <div class="grid md:grid-cols-2 gap-10">
                 <div class="group reveal card-hover bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700">
@@ -182,11 +224,18 @@
     </section>
 
     <!-- メニュー -->
-    <section id="menu" class="py-32 px-6 bg-white dark:bg-gray-900 transition-colors">
+    <section id="menu" class="py-32 px-6 bg-white dark:bg-gray-900 transition-colors relative">
         <div class="container mx-auto max-w-5xl">
-            <div class="text-center mb-20 reveal">
-                <h2 class="text-4xl md:text-5xl font-bold serif-font mb-4 tracking-tight">お品書き</h2>
-                <div class="w-20 h-1 bg-accent mx-auto"></div>
+            <!-- タイトルエリアとキャラクター配置：お品書きの左側 -->
+            <div class="flex items-center justify-center gap-6 mb-20 reveal">
+                <div class="hidden md:flex flex-col items-center">
+                    <img src="https://github.com/inoue-svg/menya-yamato/blob/main/yamato_character.jpg.jpg?raw=true" alt="やまとくん" class="w-24 h-24 rounded-2xl shadow-lg border-2 border-accent object-cover rotate-[-5deg]">
+                    <p class="text-[10px] mt-2 font-bold bg-accent text-white px-2 py-1 rounded">何にしようかな？</p>
+                </div>
+                <div class="text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold serif-font mb-4 tracking-tight">お品書き</h2>
+                    <div class="w-20 h-1 bg-accent mx-auto"></div>
+                </div>
             </div>
             
             <!-- ラーメンセクション -->
@@ -195,7 +244,6 @@
                     <i class="fas fa-bowl-food text-accent"></i> ラーメン
                 </h3>
                 <div class="grid md:grid-cols-2 gap-6">
-                    <!-- 濃厚鶏白湯系 -->
                     <div class="space-y-4">
                         <div class="p-6 rounded-2xl bg-lightBg dark:bg-gray-800 flex justify-between items-center group hover:bg-white dark:hover:bg-gray-700 transition-all border border-transparent hover:border-accent shadow-sm">
                             <div class="flex items-center gap-4">
@@ -227,7 +275,6 @@
                         </div>
                     </div>
 
-                    <!-- 煮干し醤油系 -->
                     <div class="space-y-4">
                         <div class="p-6 rounded-2xl bg-lightBg dark:bg-gray-800 flex justify-between items-center group hover:bg-white dark:hover:bg-gray-700 transition-all border border-transparent hover:border-accent shadow-sm">
                             <div class="flex items-center gap-4">
@@ -258,7 +305,7 @@
                 </div>
             </div>
 
-            <!-- セット・ご飯 セクション -->
+            <!-- セット・ご飯 -->
             <div class="grid md:grid-cols-2 gap-12 mb-24">
                 <div>
                     <h3 class="text-2xl font-bold serif-font mb-10 border-l-4 border-accent pl-4 flex items-center gap-3">
@@ -397,10 +444,23 @@
         </div>
     </section>
 
+    <!-- フッター：麺や大作の右側にキャラクター配置 -->
     <footer class="py-12 bg-white dark:bg-gray-955 text-center border-t border-gray-100 dark:border-gray-900 transition-colors">
-        <a href="#" class="text-xl font-bold serif-font mb-6 inline-block tracking-tighter">
-            麺や <span class="text-accent">大作</span>
-        </a>
+        <div class="flex items-center justify-center gap-4 mb-4">
+            <a href="#" class="text-xl font-bold serif-font inline-block tracking-tighter">
+                麺や <span class="text-accent">大作</span>
+            </a>
+            <div class="flex flex-col items-start bg-lightBg dark:bg-gray-800 p-2 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                <div class="flex items-center gap-2">
+                    <img src="https://github.com/inoue-svg/menya-yamato/blob/main/yamato_character.jpg.jpg?raw=true" alt="やまとくん" class="w-8 h-8 rounded-full border border-accent">
+                    <div class="text-left">
+                        <p class="text-[8px] font-bold leading-none">公式キャラクター</p>
+                        <p class="text-[10px] font-bold serif-font text-accent">やまとくん</p>
+                    </div>
+                </div>
+                <p class="text-[9px] mt-1 text-gray-500">〆の夜食だワン！</p>
+            </div>
+        </div>
         <p class="serif-font text-[9px] tracking-[0.5em] text-gray-400 uppercase">&copy; Menya Daisaku All Rights Reserved.</p>
     </footer>
 
@@ -440,12 +500,3 @@
     </script>
 </body>
 </html>
-<div class="flex flex-col items-center md:items-end z-10 relative group">
-    <div class="relative">
-        <img src="https://github.com/inoue-svg/menya-yamato/blob/main/yamato_character.jpg.jpg?raw=true" alt="公式キャラクター やまとくん" class="...">
-    </div>
-    <div class="text-center md:text-right mt-4">
-        <p class="font-bold serif-font text-main dark:text-white">やまとくん</p>
-        <p class="text-xs text-gray-500 dark:text-gray-400">〆の夜食だワン！</p>
-    </div>
-</div>
